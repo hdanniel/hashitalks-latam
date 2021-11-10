@@ -1,0 +1,5 @@
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.sw[a-zA-Z]
+*.hcl
