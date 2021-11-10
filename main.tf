@@ -10,5 +10,9 @@ terraform {
       source = "heroku/heroku"
       version = "4.6.0"
     }
+    herokux = {
+      source = "davidji99/herokux"
+      version = "0.30.4"
+    }
   }
 }
