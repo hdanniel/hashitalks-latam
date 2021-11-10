@@ -9,6 +9,10 @@ resource "heroku_app" "hashitalks_latam_demo" {
 // First, create a pipeline.
 resource "heroku_pipeline" "hashitalks_latam" {
   name = "hashitalks-latam"
+  owner {
+    id = var.HEROKU_ORGANIZATION
+    type = "team"
+  }
 }
 
 // Then, add the GitHub repository integration with the pipeline.

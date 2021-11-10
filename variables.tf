@@ -9,3 +9,4 @@ provider "herokux" {
 
 variable "HEROKU_EMAIL" {}
 variable "HEROKU_API_KEY" {}
+variable "HEROKU_ORGANIZATION" {}
