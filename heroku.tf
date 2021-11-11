@@ -53,3 +53,19 @@ resource "heroku_addon" "demo_newrelic" {
   app  = heroku_app.hashitalks_latam_demo.name
   plan = "newrelic:wayne"
 }
+
+resource "heroku_app" "hashitalks_latam_production" {
+  name   = "heroku-terraform-production-check"
+  region = "us"
+  organization {
+    name = "hashitalks-latam"
+  }
+}
+
+resource "heroku_formation" "production" {
+    app = "${heroku_app.hashitalks_latam_production.name}"
+    type = "web"
+    quantity = 2
+    size = "hobby"
+}
+
