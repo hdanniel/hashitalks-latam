@@ -62,10 +62,8 @@ resource "heroku_app" "hashitalks_latam_online" {
   }
 }
 
-resource "heroku_formation" "production" {
-    app = "${heroku_app.hashitalks_latam_online.name}"
-    type = "web"
-    quantity = 2
-    size = "hobby"
+resource "heroku_domain" "hashitalks_latam" {
+  app      = heroku_app.hashitalks_latam_online.name
+  hostname = "hashitalks-latam.getsysmin.com"
 }
 
