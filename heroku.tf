@@ -43,3 +43,13 @@ resource "heroku_review_app_config" "hashitalks_latam" {
   stale_days = 5
     wait_for_ci = false
 }
+
+resource "heroku_addon" "demo_postgres" {
+  app  = heroku_app.hashitalks_latam_demo.name
+  plan = "heroku-postgresql:hobby-basic"
+}
+
+resource "heroku_addon" "demo_newrelic" {
+  app  = heroku_app.hashitalks_latam_demo.name
+  plan = "newrelic:wayne"
+}
