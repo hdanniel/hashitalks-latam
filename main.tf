@@ -14,5 +14,9 @@ terraform {
       source = "davidji99/herokux"
       version = "0.30.4"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
   }
 }
