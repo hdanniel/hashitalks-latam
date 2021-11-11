@@ -6,7 +6,6 @@ resource "heroku_app" "hashitalks_latam_demo" {
   }
 }
 
-// First, create a pipeline.
 resource "heroku_pipeline" "hashitalks_latam" {
   name = "hashitalks-latam"
   owner {
@@ -15,7 +14,6 @@ resource "heroku_pipeline" "hashitalks_latam" {
   }
 }
 
-// Then, add the GitHub repository integration with the pipeline.
 resource "herokux_pipeline_github_integration" "hashitalks_latam" {
   pipeline_id = heroku_pipeline.hashitalks_latam.id
   org_repo = "hdanniel/hashitalks-latam"
@@ -25,4 +23,20 @@ resource "heroku_pipeline_coupling" "staging" {
   app      = heroku_app.hashitalks_latam_demo.id
   pipeline = heroku_pipeline.hashitalks_latam.id
   stage    = "staging"
+}
+
+resource "heroku_review_app_config" "hashitalks_latam" {
+  pipeline_id = heroku_pipeline.hashitalks_latam.id
+  org_repo = "hdanniel/hashitalks-latam"
+  automatic_review_apps = true
+  base_name = "hashitalks-latam"
+
+  deploy_target {
+    id   = "us"
+    type = "region"
+  }
+
+  destroy_stale_apps = true
+  stale_days = 5
+    wait_for_ci = false
 }
