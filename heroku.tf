@@ -26,6 +26,9 @@ resource "heroku_pipeline_coupling" "staging" {
 }
 
 resource "heroku_review_app_config" "hashitalks_latam" {
+  depends_on = [
+    herokux_pipeline_github_integration.hashitalks_latam
+  ]
   pipeline_id = heroku_pipeline.hashitalks_latam.id
   org_repo = "hdanniel/hashitalks-latam"
   automatic_review_apps = true
